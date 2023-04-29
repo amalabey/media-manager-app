@@ -2,6 +2,8 @@ package com.amalabey.mediamanager.di
 
 import com.amalabey.mediamanager.common.Constants
 import com.amalabey.mediamanager.data.remote.RadarrApi
+import com.amalabey.mediamanager.data.repository.MovieRepositoryImpl
+import com.amalabey.mediamanager.domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,5 +23,11 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RadarrApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(api: RadarrApi): MovieRepository {
+        return MovieRepositoryImpl(api)
     }
 }

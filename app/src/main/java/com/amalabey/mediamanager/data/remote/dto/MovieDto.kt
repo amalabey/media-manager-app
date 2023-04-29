@@ -1,5 +1,8 @@
 package com.amalabey.mediamanager.data.remote.dto
 
+import com.amalabey.mediamanager.domain.model.Media
+import com.amalabey.mediamanager.domain.model.MediaType
+
 data class MovieDto(
     val added: String,
     val alternateTitles: List<AlternateTitle>,
@@ -37,3 +40,17 @@ data class MovieDto(
     val year: Int,
     val youTubeTrailerId: String
 )
+
+fun MovieDto.toMedia(): Media {
+    return Media(
+        type = MediaType.MOVIE,
+        title = title,
+        year = year,
+        rating = certification,
+        runtime = runtime,
+        imdbRating = ratings.imdb.value,
+        rottenTomatoRating = ratings.rottenTomatoes.value,
+        genres = genres,
+        isDownloaded = isAvailable
+    )
+}

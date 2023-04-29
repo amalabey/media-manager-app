@@ -3,10 +3,10 @@ package com.amalabey.mediamanager.domain.model
 data class Media(
     val type: MediaType,
     val title: String,
-    val year: String,
+    val year: Int,
     val rating: String,
     val runtime: Int,
-    val imdbRating: Float,
+    val imdbRating: Double,
     val rottenTomatoRating: Int,
     val genres: List<String>,
     val isDownloaded: Boolean
