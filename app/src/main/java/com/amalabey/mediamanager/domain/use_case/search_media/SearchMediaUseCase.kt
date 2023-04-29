@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class SearchMedia @Inject constructor(
+class SearchMediaUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     operator fun invoke(keyword: String): Flow<Resource<List<Media>>> = flow {
