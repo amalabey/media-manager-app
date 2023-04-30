@@ -10,6 +10,7 @@ class MovieRepositoryImpl @Inject constructor(
     private val radarrApi: RadarrApi
 ): MovieRepository {
     override suspend fun getMovies(keyword: String): List<Media> {
-        return radarrApi.getMovies(keyword).map { it -> it.toMedia() }
+        val results = radarrApi.getMovies(keyword)
+        return results.map { it -> it.toMedia() }
     }
 }

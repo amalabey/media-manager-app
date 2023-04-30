@@ -19,7 +19,7 @@ class SearchMediaViewModel @Inject constructor(
     private val _state = mutableStateOf(SearchMediaState())
     val state: State<SearchMediaState> = _state
 
-    fun invokeSearch() {
+    private fun invokeSearch() {
         searchMediaUseCase(_state.value.keyword).onEach { result ->
             when(result){
                 is Resource.Success -> {
@@ -39,5 +39,12 @@ class SearchMediaViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun onKeywordTextChanged(newText: String) {
+        _state.value = _state.value.copy(
+            keyword = newText
+        )
+        invokeSearch()
     }
 }

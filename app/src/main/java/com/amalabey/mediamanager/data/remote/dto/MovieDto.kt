@@ -45,11 +45,12 @@ fun MovieDto.toMedia(): Media {
     return Media(
         type = MediaType.MOVIE,
         title = title,
+        description = overview,
         year = year,
         rating = certification,
         runtime = runtime,
-        imdbRating = ratings.imdb.value,
-        rottenTomatoRating = ratings.rottenTomatoes.value,
+        imdbRating = ratings.imdb?.value ?: 0.0,
+        rottenTomatoRating = ratings.rottenTomatoes?.value ?: 0,
         genres = genres,
         isDownloaded = isAvailable
     )
